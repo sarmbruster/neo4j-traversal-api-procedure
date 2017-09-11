@@ -1,0 +1,28 @@
+# neo4j-traversal-api-procedure
+
+A code example to show usage of Neo4j Traversal API inside a stored procedure.
+
+## installation
+
+To build and install type:
+
+----
+./gradlew build
+cp ./build/libs/neo4j-traversal-api-procedure-1.0.0-SNAPSHOT.jar <MY_NEO4J_DIR>/plugins
+----
+
+## usage
+
+This library provides the following stored procedures for Cypher:
+
+### `traversals.maxWeightedProductPaths`
+
+Based on a given start node, all outgoing relationships are traversed up to provided maximum depth. Along the path all `weight` properties of the relationships are multiplied. If they are above a given threshold they are part of the result. For each of the target nodes, the maximum weight is returned.
+
+Example:
+
+----
+MATCH (s:Entity{id:1}) // find start node
+CALL traversals.maxWeightedProductPaths(s, 7, 0.3) YIELD max, path
+RETURN max,path
+----
