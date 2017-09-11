@@ -22,6 +22,7 @@ dependencies {
 //    compile group: 'org.neo4j.app', name: 'neo4j-server', version: neo4jVersion
 
     testCompile group: 'org.neo4j.contrib', name: 'neo4j-spock-extension', version: '0.9.0'
+    testCompile group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion, classifier: "tests"
 //    testCompile "org.neo4j.driver:neo4j-java-driver:$neo4jClientVersion"
 
 }
