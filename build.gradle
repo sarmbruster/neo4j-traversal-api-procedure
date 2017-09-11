@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility=JavaVersion.VERSION_1_8
+targetCompatibility=JavaVersion.VERSION_1_8
+
+repositories {
+//    mavenLocal()
+    mavenCentral()
+    //maven { url "http://m2.neo4j.org/content/repositories/releases/" }
+    maven { url "https://raw.github.com/neo4j-contrib/m2/master/releases" }
+}
+
+ext {
+    neo4jVersion = "3.2.3"
+}
+
+dependencies {
+    compileOnly group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion
+    compileOnly group: 'org.neo4j', name: 'neo4j-lucene-index', version: neo4jVersion
+//    compile group: 'org.neo4j.app', name: 'neo4j-server', version: neo4jVersion
+
+    testCompile group: 'org.neo4j.contrib', name: 'neo4j-spock-extension', version: '0.9.0'
+//    testCompile "org.neo4j.driver:neo4j-java-driver:$neo4jClientVersion"
+
+}
+
+version = "1.0.0-SNAPSHOT"
+group = "org.neo4j.traversals"
+
+test {
+    systemProperties 'user.language': 'en', 'user.country': 'US'
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
